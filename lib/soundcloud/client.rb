@@ -129,7 +129,7 @@ module SoundCloud
       end
       params.merge!(client_params)
       response = handle_response(false) {
-        self.class.post("https://#{api_host}#{TOKEN_PATH}", :query => params)
+        self.class.post("https://#{api_host}#{TOKEN_PATH}", :body => params)
       }
       @options.merge!(:access_token => response.access_token, :refresh_token => response.refresh_token)
       @options[:expires_at] = Time.now + response.expires_in if response.expires_in
